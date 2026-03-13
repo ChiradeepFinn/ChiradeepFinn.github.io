@@ -1,1 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chiradeep Finn | Portfolio</title>
 
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background: linear-gradient(-45deg,#0b0b0f,#14141c,#0b0b0f,#1a1a2e);
+background-size:400% 400%;
+animation:gradientBG 12s ease infinite;
+color:white;
+line-height:1.6;
+}
+
+@keyframes gradientBG{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:#111;
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+}
+
+header h1{
+font-size:20px;
+color:#6ae3ff;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:14px;
+}
+
+nav a:hover{
+color:#6ae3ff;
+}
+
+section{
+padding:100px 40px;
+max-width:1100px;
+margin:auto;
+}
+
+.hero{
+animation:fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.hero-text{
+max-width:550px;
+}
+
+.hero-text h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero-text p{
+color:#bbb;
+margin-bottom:20px;
+}
+
+.hero img{
+width:220px;
+border-radius:50%;
+border:4px solid #6ae3ff;
+transition:transform 0.4s ease;
+}
+
+.hero img:hover{
+transform:scale(1.08) rotate(2deg);
+}
+
+.button{
+display:inline-block;
+padding:10px 22px;
+background:#6ae3ff;
+color:black;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+transition:all 0.3s ease;
+}
+
+.button:hover{
+background:white;
+box-shadow:0 0 15px #6ae3ff;
+}
+
+h3{
+margin-bottom:20px;
+font-size:28px;
+color:#6ae3ff;
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#14141c;
+padding:20px;
+border-radius:10px;
+}
+
+.card h4{
+margin-bottom:10px;
+}
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.project{
+background:#14141c;
+padding:20px;
+border-radius:10px;
+}
+
+.music{
+text-align:center;
+}
+
+.music iframe{
+margin-top:20px;
+width:100%;
+max-width:500px;
+height:120px;
+border:none;
+}
+
+.contact p{
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#111;
+margin-top:40px;
+color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ChiradeepFinn.dev</h1>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#music">My Music</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section id="home" class="hero">
+
+<div class="hero-text">
+
+<h2>Hi, I'm Chiradeep Finn</h2>
+
+<p>
+Student developer exploring computer science, artificial intelligence,
+music production, psychology, and creative technology.
+</p>
+
+<a class="button" href="#projects">View My Projects</a>
+
+</div>
+
+<img src="finn.png" alt="Profile Photo">
+
+</section>
+
+
+<section id="about">
+
+<h3>About Me</h3>
+
+<p>
+I am a high school student passionate about exploring multiple disciplines
+including computer science, artificial intelligence, music production,
+psychology, and communication.
+</p>
+
+<p>
+My goal is to build creative projects that combine technology with
+digital creativity while building a global community for collaboration
+and innovation.
+</p>
+
+</section>
+
+
+<section id="skills">
+
+<h3>Skills</h3>
+
+<div class="skills">
+
+<div class="card">
+<h4>Technology & Computing</h4>
+<p>HTML, CSS, JavaScript, Python, Git, Web Development</p>
+</div>
+
+<div class="card">
+<h4>Artificial Intelligence</h4>
+<p>AI exploration, machine learning experiments, automation ideas</p>
+</div>
+
+<div class="card">
+<h4>Music & Creativity</h4>
+<p>Music production, sound design, digital creativity, creative coding</p>
+</div>
+
+<div class="card">
+<h4>Psychology & Communication</h4>
+<p>Public speaking, psychology exploration, community building</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="projects">
+
+<h3>Projects</h3>
+
+<div class="projects">
+
+<div class="project">
+<h4>Portfolio Website</h4>
+<p>This personal website built using HTML and CSS.</p>
+</div>
+
+<div class="project">
+<h4>AI Chatbot Experiment</h4>
+<p>Exploring conversational AI and automation ideas.</p>
+</div>
+
+<div class="project">
+<h4>Creative Coding Project</h4>
+<p>Combining programming with music and visuals.</p>
+</div>
+
+<div class="project">
+<h4>Music Production Project</h4>
+<p>Original music production using digital audio tools.</p>
+</div>
+
+<div class="project">
+<h4>Psychology Insight Project</h4>
+<p>Exploring psychological concepts and human behavior.</p>
+</div>
+
+<div class="project">
+<h4>Study Tool Web App</h4>
+<p>Building a simple productivity tool for students.</p>
+</div>
+
+<div class="project">
+<h4>AI Learning Experiments</h4>
+<p>Mini projects exploring machine learning concepts.</p>
+</div>
+
+<div class="project">
+<h4>Community Project</h4>
+<p>Creating platforms for collaboration and creativity.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="music" class="music">
+
+<h3>My Music</h3>
+
+<p>Music projects and sound experiments.</p>
+
+<iframe src=""></iframe>
+
+<p>More music coming soon.</p>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+<h3>Contact</h3>
+
+<p>Email: your-email@example.com</p>
+
+<p>GitHub: https://github.com/ChiradeepFinn</p>
+
+<p>More links coming soon.</p>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 ChiradeepFinn.dev | Built with passion for technology and creativity</p>
+
+</footer>
+<script>
+
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.style.opacity=1;
+entry.target.style.transform="translateY(0)";
+}
+});
+});
+
+sections.forEach(section=>{
+section.style.opacity=0;
+section.style.transform="translateY(40px)";
+section.style.transition="all 0.8s ease";
+observer.observe(section);
+});
+
+</script>
+
+</body>
+  </html>
