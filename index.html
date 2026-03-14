@@ -15,14 +15,12 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background: linear-gradient(-45deg,#0b0b0f,#14141c,#0b0b0f,#1a1a2e);
+background:linear-gradient(-45deg,#0b0b0f,#1a1a2e,#111827,#000000);
 background-size:400% 400%;
-animation:gradientBG 12s ease infinite;
-color:white;
-line-height:1.6;
+animation:gradient 15s ease infinite;
 }
 
-@keyframes gradientBG{
+@keyframes gradient{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
@@ -72,8 +70,32 @@ max-width:1100px;
 margin:auto;
 }
 
+.gradient{
+font-size:60px;
+font-weight:700;
+background:linear-gradient(90deg,#6ae3ff,#8b7cff,#ff7edb);
+-webkit-background-clip:text;
+color:transparent;
+animation:glow 4s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #6ae3ff;}
+to{text-shadow:0 0 30px #8b7cff;}
+}
+
 .hero{
-animation:fadeUp 1.2s ease;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+}
+
+.hero-buttons{
+margin-top:20px;
+display:flex;
+gap:15px;
 }
 
 @keyframes fadeUp{
@@ -171,24 +193,17 @@ margin-bottom:10px;
 }
 
 .project{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(12px);
+background:linear-gradient(145deg,#14141c,#0f0f15);
 padding:25px;
-border-radius:12px;
-transition:all 0.3s ease;
-border:1px solid rgba(255,255,255,0.1);
+border-radius:15px;
+transition:0.4s;
+border:1px solid rgba(255,255,255,0.05);
 }
 
 .project:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 50px rgba(106,227,255,0.25);
-}
-
-.project{
-background:#14141c;
-padding:20px;
-border-radius:10px;
-}
+transform:translateY(-12px) rotateX(5deg);
+box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  }
 
 .music{
 text-align:center;
@@ -230,10 +245,33 @@ padding-right:5px;
 white-space:nowrap;
 overflow:hidden;
   }
+  #loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b0b0f;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+color:#6ae3ff;
+z-index:9999;
+  }
+  #visualizer{
+width:100%;
+max-width:600px;
+height:150px;
+margin-top:20px;
+background:#111;
+border-radius:10px;
+  }
 </style>
 </head>
 
 <body>
+  <div id="loader">Loading...</div>
 
 <header>
 <h1>ChiradeepFinn.dev</h1>
@@ -253,18 +291,20 @@ overflow:hidden;
 
 <div class="hero-text">
 
-<h2>Hi, I'm Chiradeep Finn</h2>
+<h2 class="gradient">Chiradeep Finn</h2>
 
 <p id="typing"></p>
 
-<a class="button" href="#projects">View My Projects</a>
+<div class="hero-buttons">
+<a class="button" href="#projects">Projects</a>
+<a class="button" href="https://github.com/ChiradeepFinn">GitHub</a>
+</div>
 
 </div>
 
 <img src="Finn.png" alt="Profile Photo">
 
 </section>
-
 
 <section id="about">
 
@@ -373,7 +413,11 @@ and innovation.
 
 <p>Music projects and sound experiments.</p>
 
-<iframe src=""></iframe>
+<audio id="audio" controls>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="visualizer"></canvas>
 
 <p>More music coming soon.</p>
 
@@ -384,7 +428,9 @@ and innovation.
 
 <h3>Contact</h3>
 
-<p>Email: your-email@example.com</p>
+<p>Email: softwarechiradeep@gmail.com</p>
+  
+<p>Outlook:finleycarlson@outlook.com</p>
 
 <p>GitHub: https://github.com/ChiradeepFinn</p>
 
@@ -500,6 +546,132 @@ setTimeout(typing,50);
 typing();
 
   </script>
+  <script>
 
+const glow=document.createElement("div");
+glow.style.position="fixed";
+glow.style.width="400px";
+glow.style.height="400px";
+glow.style.background="radial-gradient(circle,#6ae3ff33,transparent)";
+glow.style.pointerEvents="none";
+glow.style.zIndex="-1";
+
+document.body.appendChild(glow);
+
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX-200+"px";
+glow.style.top=e.clientY-200+"px";
+});
+
+  </script>
+<script>
+
+const items=document.querySelectorAll("section");
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.style.opacity=1;
+entry.target.style.transform="translateY(0)";
+}
+});
+});
+
+items.forEach(el=>{
+el.style.opacity=0;
+el.style.transform="translateY(80px)";
+el.style.transition="all 1s ease";
+observer.observe(el);
+});
+
+</script>
+  <script>
+
+const magnets = document.querySelectorAll(".button, .project");
+
+magnets.forEach(magnet => {
+magnet.addEventListener("mousemove", function(e){
+
+const position = magnet.getBoundingClientRect();
+const x = e.clientX - position.left - position.width/2;
+const y = e.clientY - position.top - position.height/2;
+
+magnet.style.transform = "translate("+x*0.2+"px,"+y*0.2+"px)";
+
+});
+
+magnet.addEventListener("mouseleave", function(){
+magnet.style.transform = "translate(0px,0px)";
+});
+
+});
+
+  </script>
+  <script>
+
+const cards=document.querySelectorAll(".project");
+
+cards.forEach(card=>{
+
+card.addEventListener("mousemove",e=>{
+
+const rect=card.getBoundingClientRect();
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+
+const centerX=rect.width/2;
+const centerY=rect.height/2;
+
+const rotateX=(y-centerY)/8;
+const rotateY=(centerX-x)/8;
+
+card.style.transform=
+"rotateX("+rotateX+"deg) rotateY("+rotateY+"deg)";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+card.style.transform="rotateX(0) rotateY(0)";
+});
+
+});
+
+  </script>
+  <script>
+window.addEventListener("load",()=>{
+document.getElementById("loader").style.display="none";
+});
+  </script>
+  <script>
+
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 600;
+canvas.height = 150;
+
+let bars = 50;
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<bars;i++){
+
+let height=Math.random()*120;
+
+ctx.fillStyle="#6ae3ff";
+
+ctx.fillRect(i*12,canvas.height-height,8,height);
+
+}
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
+
+  </script>
 </body>
   </html>
