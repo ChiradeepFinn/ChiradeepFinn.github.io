@@ -53,23 +53,22 @@ font-size:20px;
 color:#6ae3ff;
 }
 
-nav a{
-position:relative;
-}
-
-nav a::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-4px;
-width:0%;
-height:2px;
-background:#6ae3ff;
-transition:0.3s;
-}
-
-nav a:hover::after{
+nav{
+position:fixed;
+top:0;
 width:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+padding:15px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:100;
+}
+
+nav a{
+margin-left:20px;
+font-weight:500;
 }
 
 section{
@@ -93,11 +92,34 @@ to{text-shadow:0 0 30px #8b7cff;}
 }
 
 .hero{
-display:flex;
-align-items:center;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:40px;
+position:relative;
+padding:120px 20px;
+text-align:center;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+top:-200px;
+left:-200px;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#6ae3ff33,transparent 60%);
+filter:blur(80px);
+z-index:-1;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+bottom:-200px;
+right:-200px;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#a78bfa33,transparent 60%);
+filter:blur(80px);
+z-index:-1;
 }
 
 .hero-buttons{
@@ -257,20 +279,40 @@ padding-right:5px;
 max-width:400px;
 word-wrap:break-word;
 }
-  #loader{
+  #preloader{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:#0b0b0f;
+background:#050505;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-font-size:24px;
-color:#6ae3ff;
 z-index:9999;
-  }
+}
+
+.loader{
+width:60px;
+height:60px;
+border:4px solid rgba(255,255,255,0.1);
+border-top:4px solid #6ae3ff;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+.loading-text{
+margin-top:20px;
+font-size:16px;
+letter-spacing:2px;
+color:#6ae3ff;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
   #visualizer{
 width:100%;
 max-width:600px;
@@ -278,6 +320,14 @@ height:150px;
 margin-top:20px;
 background:#111;
 border-radius:10px;
+  }
+  #particles-js{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-2;
   }
   .social a{
 margin:0 10px;
@@ -318,7 +368,14 @@ pointer-events:none;
 </head>
 
 <body>
-  <div id="loader">Loading...</div>
+  <<div id="preloader">
+
+<div class="loader"></div>
+
+<p class="loading-text">Loading ChiradeepFinn.dev</p>
+
+  </div>
+  <div id="particles-js"></div>
 
 <header>
 <h1>ChiradeepFinn.dev</h1>
@@ -798,6 +855,34 @@ cursorGlow.style.top=e.clientY-100+"px";
 });
 
   </script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<script>
+particlesJS("particles-js",{
+particles:{
+number:{value:60},
+size:{value:3},
+move:{speed:1},
+line_linked:{enable:false}
+}
+});
+</script>
+  <script>
+
+window.addEventListener("load",function(){
+
+const loader=document.getElementById("preloader");
+
+loader.style.opacity="0";
+
+loader.style.transition="opacity 0.6s ease";
+
+setTimeout(()=>{
+loader.style.display="none";
+},600);
+
+});
+
+  </script>
 </body>
   </html>
